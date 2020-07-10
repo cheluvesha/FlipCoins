@@ -1,29 +1,33 @@
-#!/bin/bash
+#!/bin/bash -x
+Hcount=21;
+Lcount=21;
+H_count=0;
+L_count=0;
 flag=1;
-Hcount=0;
-Lcount=0;
+if [ $Hcount -eq $Lcount ]
+then
 while [ $flag -eq 1 ]
 do
-guess=$(( RANDOM% 2))
+guess=$(( RANDOM%2 ))
 if [ $guess -eq 1 ]
 then
-        Hcount=`expr $Lcount + 1`
+        ((H_count++))
 else
-        Lcount=`expr $Lcount + 1`
+        ((L_count++))
 fi
-        if [[ $Hcount -eq 21 ]] || [[ $Lcount -eq 21 ]]
-        then
+if [ $H_count -eq 2 ] || [ $L_count -eq 2 ]
+then
         break;
-        else
-        continue;
-        fi
-done
-if [[ $Hcount -gt $Lcount ]]
-then
-        echo "Heads won this many times: "$Hcount
-elif [[ $Lcount -gt $Hcount ]]
-then
-        echo "Tails won this many times: "$Lcount
 else
-        echo "It's a tie between them "
+        continue;
 fi
+done
+fi
+if [ $H_count -gt $L_count ]
+        then
+                echo  "Heads won"
+        else
+                echo "Tails Won"
+        fi
+
+
