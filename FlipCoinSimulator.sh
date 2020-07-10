@@ -1,20 +1,29 @@
-#!/bin/bash -x
-read -p "Enter the range to flip: " num
-val=1;
-count_head=0;
-count_tail=0;
-while [ $val -le $num ]
+#!/bin/bash
+flag=1;
+Hcount=0;
+Lcount=0;
+while [ $flag -eq 1 ]
 do
 guess=$(( RANDOM% 2))
 if [ $guess -eq 1 ]
 then
-        ((count_head++))
+        Hcount=`expr $Lcount + 1`
 else
-        ((count_tail++))
+        Lcount=`expr $Lcount + 1`
 fi
-((val++))
+        if [[ $Hcount -eq 21 ]] || [[ $Lcount -eq 21 ]]
+        then
+        break;
+        else
+        continue;
+        fi
 done
-echo "Number of times Heads won: "$count_head
-echo "Number of times Tails won: "$count_tail
-
-
+if [[ $Hcount -gt $Lcount ]]
+then
+        echo "Heads won this many times: "$Hcount
+elif [[ $Lcount -gt $Hcount ]]
+then
+        echo "Tails won this many times: "$Lcount
+else
+        echo "It's a tie between them "
+fi
