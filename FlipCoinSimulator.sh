@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash 
 Hcount=21;
 Lcount=21;
 H_count=0;
@@ -25,9 +25,9 @@ done
 fi
 if [ $H_count -gt $L_count ]
         then
-                echo  "Heads won"
+                echo  "Heads Won with $H_count number of times"
         else
-                echo "Tails Won"
+                echo "Tails Won with $L_count number of times"
         fi
 
 
